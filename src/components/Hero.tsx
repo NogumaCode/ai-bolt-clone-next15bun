@@ -5,16 +5,24 @@ import { ArrowRight, Link } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import ColorsList from "@/data/Colors";
 import { MessagesContext } from "@/context/MessagesContext";
+import { UserDetailContext } from "@/context/UserDetailContext";
+import SignInDialog from "./auth/SignInDialog";
 
 
 const Hero = () => {
-    const [userInput, setUserInput] =useState<String>();
+    const [userInput, setUserInput] =useState<string>();
     const {messages,setMessages} = useContext(MessagesContext);
+    const {userDetail,setUserDetail} = useContext(UserDetailContext);
+    const [openDialog,setOpenDialog] =useState(false);
 
     const onGenerate=(input:string)=>{
+        if(!userDetail?.name){
+            setOpenDialog(true);
+            return;
+        }
         setMessages((prevMessages) => [
             ...prevMessages,
-            { role: "user", content: input }, // 新しいメッセージを追加
+            { role: "user", content: input }, 
           ]);
 
     }
@@ -40,6 +48,7 @@ const Hero = () => {
         ))}
 
     </div>
+    <SignInDialog openDialog={openDialog} closeDialog={setOpenDialog} />
     </div>
     
   );
