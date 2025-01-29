@@ -16,7 +16,7 @@ const Hero = () => {
     const [openDialog,setOpenDialog] =useState(false);
 
     const onGenerate=(input:string)=>{
-        if(!userDetail?.name){
+        if(!userDetail[0]?.name){
             setOpenDialog(true);
             return;
         }
