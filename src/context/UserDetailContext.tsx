@@ -1,8 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from "react";
+import { Id } from "../../convex/_generated/dataModel";
 
 // メッセージの型定義
 export interface UserDetail {
-  uid: string; // Googleの `sub` (一意のID)
+  _id: Id<"users">; 
   name: string;
   email: string;
   picture?: string; // プロフィール画像は `undefined` も許容
