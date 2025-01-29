@@ -2,19 +2,20 @@ import { createContext, Dispatch, SetStateAction } from "react";
 
 // メッセージの型定義
 export interface UserDetail {
-    role: string;
-    content: string;
-    name?: string; // 名前を追加
+  uid: string; // Googleの `sub` (一意のID)
+  name: string;
+  email: string;
+  picture?: string; // プロフィール画像は `undefined` も許容
   }
 
 // Contextの型定義
 export interface UserDetailContextType {
-  userDetail: UserDetail[];
-  setUserDetail: Dispatch<SetStateAction<UserDetail[]>>; 
+  userDetail: UserDetail | null;
+  setUserDetail: Dispatch<SetStateAction<UserDetail | null>>;
 }
 
 // デフォルト値を設定
 export const UserDetailContext = createContext<UserDetailContextType>({
-  userDetail: [],
+  userDetail: null,
   setUserDetail: () => {},
 });
