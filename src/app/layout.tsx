@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Noto_Sans_JP } from "next/font/google";
 import Provider from "./Provider";
+import ConvexClientProvider from "./ConvexClientProvider";
 const font = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <body className={`${font.className} antialiased dark`}>
-        <Provider>{children}</Provider>
+        <ConvexClientProvider>
+          <Provider>{children}</Provider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
